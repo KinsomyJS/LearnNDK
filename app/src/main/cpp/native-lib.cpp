@@ -2,7 +2,8 @@
 #include <string>
 #include <iostream>
 #include <dirent.h>
-#include "LogUtils.h"
+//#include "LogUtils.h"
+#include "my_log.h"
 #include <android/bitmap.h>
 
 extern "C" {
@@ -21,7 +22,7 @@ void showAllFiles(string dir_name) {
 
     //检查是否是dir
     if (NULL == dir) {
-        LOGE("Can't open the dir. Check path if the path is correct ! ")
+        LOGE("Can't open the dir. Check path if the path is correct ! ");
         return;
     }
 
@@ -87,7 +88,7 @@ Java_com_kinsomy_learnndk_MainActivity_passBitmap(JNIEnv *env, jobject instance,
 
     int length = info.stride * info.height;
     for (int i = 0; i < length; ++i) {
-        LOGD("value: %x", addrPtr[i])
+        LOGD("value: %x", addrPtr[i]);
     }
 
     result = AndroidBitmap_unlockPixels(env, bitmap);
@@ -99,10 +100,12 @@ Java_com_kinsomy_learnndk_MainActivity_passBitmap(JNIEnv *env, jobject instance,
 
 
 extern "C" JNIEXPORT jstring JNICALL
-Java_com_kinsomy_learnndk_MainActivity_stringFromJNI(
-        JNIEnv *env,
-        jobject /* this */) {
+Java_com_kinsomy_learnndk_MainActivity_stringFromJNI(JNIEnv *env, jobject instance) {
     std::string hello = "Hello from C++";
+    LOGV("method stringFromJNI is called.");
+    LOGD("env address: %p, jobject address: %p", env, instance);
+    LOGASSERT(0 != env, "JNIEnv can not be null!")
+    LOGI("Returning a new string.");
     return env->NewStringUTF(hello.c_str());
 }
 
@@ -127,3 +130,4 @@ Java_com_kinsomy_learnndk_MainActivity_test(JNIEnv *env, jobject instance) {
     }
 
 }
+

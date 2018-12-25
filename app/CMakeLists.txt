@@ -45,7 +45,6 @@ target_link_libraries( # Specifies the target library.
         # included in the NDK.
         ${log-lib})
 
-
 IF (${CMAKE_HOST_SYSTEM_NAME} MATCHES "Windows")
     ADD_DEFINITIONS(-DWindows)
 ELSE (${CMAKE_HOST_SYSTEM_NAME} MATCHES "Linux")
