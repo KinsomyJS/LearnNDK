@@ -98,6 +98,15 @@ Java_com_kinsomy_learnndk_MainActivity_passBitmap(JNIEnv *env, jobject instance,
 }
 }
 
+static jstring fun1(JNIEnv *env) {
+    /*
+     * 地址传0 BUG 发生
+     */
+    env = 0;
+    std::string hello = "Hello from C++";
+    return env->NewStringUTF(hello.c_str());
+}
+
 
 extern "C" JNIEXPORT jstring JNICALL
 Java_com_kinsomy_learnndk_MainActivity_stringFromJNI(JNIEnv *env, jobject instance) {

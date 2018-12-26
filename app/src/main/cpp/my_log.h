@@ -16,7 +16,7 @@
 #define MY_LOG_LEVEL_FATAL 6
 #define MY_LOG_LEVEL_SILENT 7
 
-#define MY_LOG_TAG "JNI_LOG"
+#define MY_LOG_TAG "MY_JNI_LOG"
 #ifndef MY_LOG_TAG
 #   define MY_LOG_TAG __FILE__
 #endif
